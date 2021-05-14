@@ -31,7 +31,7 @@ subprojects {
     }
 
     task ktlint(type: JavaExec) {
-        main = 'com.github.shyiko.ktlint.Main'
+        main = 'com.pinterest.ktlint.Main'
         classpath = configurations.ktlint
         args 'src/**/*.kt'
     }
@@ -44,22 +44,6 @@ subprojects {
 
     afterEvaluate { project ->
         check.dependsOn ktlint
-    }
-
-    task copyGitHooks(type: Copy) {
-        from("${rootDir}/todoConfig/git/git-hooks/") {
-            include '**/*'
-            rename '(.*)', '$1'
-        }
-        into "${rootDir}/.git/hooks"
-    }
-
-    task installGitHooks(type: Exec) {
-        group 'git hooks'
-        workingDir rootDir
-        commandLine 'chmod'
-        args '-R', '+x', '.git/hooks/'
-        dependsOn copyGitHooks
     }
 }
 
