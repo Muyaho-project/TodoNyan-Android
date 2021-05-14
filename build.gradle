@@ -5,10 +5,10 @@ buildscript {
         google()
         jcenter()
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.1.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,6 +18,48 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+}
+
+subprojects {
+    configurations {
+        ktlint
+    }
+
+    dependencies {
+        ktlint 'com.pinterest:ktlint:0.41.0'
+    }
+
+    task ktlint(type: JavaExec) {
+        main = 'com.github.shyiko.ktlint.Main'
+        classpath = configurations.ktlint
+        args 'src/**/*.kt'
+    }
+
+    task ktlintFormat(type: JavaExec) {
+        main = 'com.pinterest:ktlint:0.41.0'
+        classpath = configurations.ktlint
+        args '-F', 'src/**/*.kt'
+    }
+
+    afterEvaluate { project ->
+        check.dependsOn ktlint
+    }
+
+    task copyGitHooks(type: Copy) {
+        from("${rootDir}/todoConfig/git/git-hooks/") {
+            include '**/*'
+            rename '(.*)', '$1'
+        }
+        into "${rootDir}/.git/hooks"
+    }
+
+    task installGitHooks(type: Exec) {
+        group 'git hooks'
+        workingDir rootDir
+        commandLine 'chmod'
+        args '-R', '+x', '.git/hooks/'
+        dependsOn copyGitHooks
     }
 }
 
