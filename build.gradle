@@ -21,31 +21,6 @@ allprojects {
     }
 }
 
-subprojects {
-    configurations {
-        ktlint
-    }
-
-    dependencies {
-        ktlint 'com.pinterest:ktlint:0.41.0'
-    }
-
-    task ktlint(type: JavaExec) {
-        main = 'com.pinterest.ktlint.Main'
-        classpath = configurations.ktlint
-        args 'src/**/*.kt'
-    }
-
-    task ktlintFormat(type: JavaExec) {
-        main = 'com.pinterest:ktlint:0.41.0'
-        classpath = configurations.ktlint
-        args '-F', 'src/**/*.kt'
-    }
-
-    afterEvaluate { project ->
-        check.dependsOn ktlint
-    }
-}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

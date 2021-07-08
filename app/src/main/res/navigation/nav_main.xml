@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/todoHomeFragment">
+
+    <fragment
+        android:id="@+id/todoHomeFragment"
+        android:name="org.muyaho.todonyan.ui.todohome.ToDoHomeFragment"
+        android:label="홈" />
+
+    <fragment
+        android:id="@+id/todoCatFragment"
+        android:name="org.muyaho.todonyan.ui.todocat.ToDoCatFragment"
+        android:label="고양이" />
+
+    <fragment
+        android:id="@+id/todoProfileFragment"
+        android:name="org.muyaho.todonyan.ui.todoprofile.ToDoProfileFragment"
+        android:label="My" />
+
+</navigation>
