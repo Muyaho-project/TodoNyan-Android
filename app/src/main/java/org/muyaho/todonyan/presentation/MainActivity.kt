@@ -25,9 +25,11 @@ class MainActivity : AppCompatActivity() {
         setStatusBarColor()
 
         val navController = Navigation.findNavController(this, R.id.nav_host)
-        appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.todoHomeFragment, R.id.todoCatFragment, R.id.todoProfileFragment
-        ))
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.todoHomeFragment, R.id.todoCatFragment, R.id.todoProfileFragment
+            )
+        )
         NavigationUI.setupWithNavController(binding.mainBottomNavigation, navController)
         binding.mainBottomNavigation.itemIconTintList = null
     }

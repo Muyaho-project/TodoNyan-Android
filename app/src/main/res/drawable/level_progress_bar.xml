@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="@dimen/level_progress_bar_radius" />
+            <solid android:color="@color/level_progress_bar_background" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress"
+        android:top="@dimen/level_progress_bar_padding"
+        android:bottom="@dimen/level_progress_bar_padding"
+        android:left="@dimen/level_progress_bar_padding"
+        android:right="@dimen/level_progress_bar_padding">
+
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="@dimen/level_progress_bar_radius" />
+                <solid android:color="@color/level_progress_bar_inner" />
+            </shape>
+        </scale>
+    </item>
+</layer-list>
