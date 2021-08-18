@@ -12,15 +12,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#E5E5E5">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/background_room_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:src="@drawable/background_room"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,9 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
             android:src="@drawable/ic_cat"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView" />
+            app:layout_constraintBottom_toBottomOf="@+id/background_room_image_view"
+            app:layout_constraintEnd_toEndOf="@+id/background_room_image_view"
+            app:layout_constraintStart_toStartOf="@+id/background_room_image_view" />
 
         <ProgressBar
             android:id="@+id/level_progress_bar"
@@ -41,8 +41,8 @@
             android:layout_marginTop="@dimen/level_progress_bar_margin_top"
             android:layout_marginEnd="@dimen/level_progress_bar_margin_right"
             android:layout_marginRight="@dimen/level_progress_bar_margin_right"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/background_room_image_view"
+            app:layout_constraintTop_toTopOf="@+id/background_room_image_view" />
 
         <TextView
             android:id="@+id/level"
@@ -77,7 +77,7 @@
             android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/background_room_image_view"
             app:mcv_calendarMode="week"
             app:mcv_dateTextAppearance="@style/CustomTextAppearance"
             app:mcv_selectionColor="#313234" />
@@ -93,87 +93,92 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calendarview" />
 
-        <TextView
-            android:id="@+id/today_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="14dp"
-            android:text="4월 10일"
-            android:textColor="#A4A5A9"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendar_bottom_arrow_image" />
-
-        <TextView
-            android:id="@+id/todo_count_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="7개의 할일"
-            android:textColor="#A4A5A9"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/today_text"
-            app:layout_constraintStart_toEndOf="@+id/today_text"
-            app:layout_constraintTop_toTopOf="@+id/today_text" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="26dp"
-            android:layout_marginRight="26dp"
-            android:text="시간순"
-            android:textColor="#A4A5A9"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/todo_count_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/todo_count_text" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
-            android:src="@drawable/ic_dot"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
-            android:text="그룹순"
-            android:textColor="#A4A5A9"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/todo_recycler_view"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="14dp"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            app:items="@{viewmodel.todoList}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:background="#E5E5E5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/todo_count_text"
-            tools:listitem="@layout/todo_home_item" />
+            app:layout_constraintTop_toBottomOf="@+id/calendar_bottom_arrow_image">
+
+            <TextView
+                style="@style/TopOfTodoListTextStyle"
+                android:id="@+id/today_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4월 10일"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/TopOfTodoListTextStyle"
+                android:id="@+id/todo_count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7개의 할일"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/today_text"
+                app:layout_constraintStart_toEndOf="@+id/today_text"
+                app:layout_constraintTop_toTopOf="@+id/today_text" />
+
+            <TextView
+                style="@style/TopOfTodoListTextStyle"
+                android:id="@+id/sort_by_time_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sort_by_time"
+                android:layout_marginEnd="26dp"
+                android:layout_marginRight="26dp"
+                app:layout_constraintBottom_toBottomOf="@+id/todo_count_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/todo_count_text" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_dot"
+                app:layout_constraintBottom_toBottomOf="@+id/sort_by_time_text_view"
+                app:layout_constraintEnd_toStartOf="@+id/sort_by_time_text_view"
+                app:layout_constraintTop_toTopOf="@+id/sort_by_time_text_view" />
+
+            <TextView
+                android:id="@+id/sort_by_group_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:text="@string/sort_by_group"
+                android:textColor="#A4A5A9"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/todo_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                app:items="@{viewmodel.todoList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/todo_count_text"
+                tools:listitem="@layout/todo_home_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
