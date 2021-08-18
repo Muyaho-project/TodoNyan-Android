@@ -5,7 +5,7 @@
     <data>
         <variable
             name="todoItem"
-            type="org.muyaho.todonyan.data.Todo" />
+            type="org.muyaho.todonyan.data.model.Todo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

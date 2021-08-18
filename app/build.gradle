@@ -57,4 +57,7 @@ dependencies {
 
     // Custom calendarview
     implementation "com.prolificinteractive:material-calendarview:$material_calendarview_version"
+
+    // Lottie
+    implementation 'com.airbnb.android:lottie:3.5.0'
 }

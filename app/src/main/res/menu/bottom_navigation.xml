@@ -7,16 +7,16 @@
 
     <item
         android:id="@+id/todoCatFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_bottom_cat"
         android:title="고양이" />
 
     <item
         android:id="@+id/foodMapFragment"
-        android:icon="@drawable/ic_my"
+        android:icon="@drawable/ic_bottom_my"
         android:title="My" />
 
     <item
         android:id="@+id/todoProfileFragment"
-        android:icon="@drawable/ic_my"
+        android:icon="@drawable/ic_bottom_add"
         android:title="" />
 </menu>
