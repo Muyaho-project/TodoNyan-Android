@@ -13,4 +13,5 @@
     <color name="level_progress_bar_inner">#FF6954</color>
     <color name="level_progress_bar_background">#000000</color>
 
+    <color name="calendar_text">#313234</color>
 </resources>

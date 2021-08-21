@@ -1,0 +1,15 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item>
+                <color
+                    android:color="@android:color/white"/>
+            </item>
+            <item android:left="100dp">
+                <bitmap
+                    android:gravity="right"
+                    android:src="@drawable/ic_spinner_dropdown"/>
+            </item>
+        </layer-list>
+    </item>
+</selector>

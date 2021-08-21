@@ -20,4 +20,9 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="overlapAnchor">true</item>
+        <item name="android:background">@drawable/background_spinner</item>
+    </style>
 </resources>

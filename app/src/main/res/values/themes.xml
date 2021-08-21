@@ -12,5 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="spinnerStyle">@style/SpinnerTheme</item>
+        <item name="android:spinnerStyle">@style/SpinnerTheme</item>
     </style>
 </resources>

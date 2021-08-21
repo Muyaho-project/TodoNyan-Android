@@ -16,11 +16,15 @@
 
         <ImageView
             android:id="@+id/background_room_image_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:src="@drawable/background_room"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -70,17 +74,26 @@
             app:layout_constraintEnd_toStartOf="@+id/level_progress_bar"
             app:layout_constraintTop_toTopOf="@+id/level_progress_bar" />
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            android:id="@+id/calendarview"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/date_spinner"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:spinnerMode="dropdown"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/background_room_image_view"
-            app:mcv_calendarMode="week"
-            app:mcv_dateTextAppearance="@style/CustomTextAppearance"
-            app:mcv_selectionColor="#313234" />
+            app:layout_constraintTop_toBottomOf="@+id/background_room_image_view"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendar_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_spinner" />
 
         <ImageView
             android:id="@+id/calendar_bottom_arrow_image"
@@ -91,7 +104,7 @@
             android:src="@drawable/calendar_bottom_arrow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarview" />
+            app:layout_constraintTop_toBottomOf="@+id/calendar_recycler_view" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -149,18 +162,15 @@
                 app:layout_constraintTop_toTopOf="@+id/sort_by_time_text_view" />
 
             <TextView
+                style="@style/TopOfTodoListTextStyle"
                 android:id="@+id/sort_by_group_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
                 android:text="@string/sort_by_group"
-                android:textColor="#A4A5A9"
-                android:textSize="12sp"
-                android:textStyle="bold"
+                android:layout_marginRight="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toStartOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/todo_recycler_view"
