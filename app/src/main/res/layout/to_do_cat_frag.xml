@@ -17,13 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_cat_sleep"
         android:layout_marginBottom="12dp"
+        android:src="@drawable/ic_cat_sleep"
         app:layout_constraintBottom_toTopOf="@+id/cat_info_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/cat_help_image_view"
@@ -123,6 +124,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/background_room_image_view" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todo_cat_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/owned_cat_text_view"
+        tools:listitem="@layout/item_todo_cat" />
 
+    <TextView
+        android:id="@+id/meet_cat_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="만나고 싶은 투두냥"
+        android:textColor="#313234"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todo_cat_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todo_cat_meet_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meet_cat_text_view"
+        tools:listitem="@layout/item_todo_cat">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
