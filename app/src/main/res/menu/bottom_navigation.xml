@@ -18,5 +18,5 @@
     <item
         android:id="@+id/todoProfileFragment"
         android:icon="@drawable/ic_bottom_add"
-        android:title="" />
+        android:title=""/>
 </menu>

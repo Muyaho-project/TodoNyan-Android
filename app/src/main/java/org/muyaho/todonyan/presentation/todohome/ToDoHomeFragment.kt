@@ -1,66 +1,99 @@
 package org.muyaho.todonyan.presentation.todohome
 
-import androidx.lifecycle.ViewModelProvider
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import org.muyaho.todonyan.R
+import org.muyaho.todonyan.data.model.SortType
 import org.muyaho.todonyan.databinding.ToDoHomeFragBinding
 
+@AndroidEntryPoint
 class ToDoHomeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ToDoHomeFragment()
-    }
-
-    private lateinit var viewModel: ToDoHomeViewModel
+    private val todoHomeViewModel: ToDoHomeViewModel by viewModels()
     private lateinit var binding: ToDoHomeFragBinding
-    val datas = mutableListOf<MultiData>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ToDoHomeFragBinding.inflate(layoutInflater).apply {
-            lifecycleOwner = viewLifecycleOwner
+        binding = ToDoHomeFragBinding.inflate(layoutInflater)
+
+        todoHomeViewModel.calendar.observe(viewLifecycleOwner, { calendar ->
+            val days = mutableListOf<MultiData>()
+            val items = arrayOf("${calendar.currentYear}년 ${calendar.currentMonth}월")
+            val spinnerAdapter = ArrayAdapter(requireContext(), R.layout.item_spinner, items)
+            binding.dateSpinner.adapter = spinnerAdapter
+
+            val calendarAdapter = TodoCalendarAdapter()
+            binding.calendarRecyclerView.adapter = calendarAdapter
+            binding.calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
+
+            days.add(MultiData("일", null, DAY_OF_WEEK_TYPE))
+            days.add(MultiData("월", null, DAY_OF_WEEK_TYPE))
+            days.add(MultiData("화", null, DAY_OF_WEEK_TYPE))
+            days.add(MultiData("수", null, DAY_OF_WEEK_TYPE))
+            days.add(MultiData("목", null, DAY_OF_WEEK_TYPE))
+            days.add(MultiData("금", null, DAY_OF_WEEK_TYPE))
+            days.add(MultiData("토", null, DAY_OF_WEEK_TYPE))
+
+            val daysArr = calendar.days
+
+            for (index in daysArr.indices) {
+                days.add(MultiData(calendarDate = daysArr[index], type = DATE_TYPE))
+            }
+            calendarAdapter.updateDays(days)
+            calendarAdapter.notifyDataSetChanged()
+
+            binding.todayText.text = "${calendar.currentDay}일 ${calendar.dayOfWeek},"
+        })
+
+        todoHomeViewModel.todoList.observe(viewLifecycleOwner, { todoList ->
+            if(binding.todoRecyclerView.adapter == null) {
+                binding.todoRecyclerView.adapter = TodoHomeAdapter()
+            }
+            val todoHomeAdapter = binding.todoRecyclerView.adapter as TodoHomeAdapter
+            todoList?.let { list ->
+                todoHomeAdapter.updateItems(list)
+                todoHomeAdapter.notifyDataSetChanged()
+            }
+
+            binding.todoCountText.text = "${todoList.size}개의 할일"
+        })
+
+        todoHomeViewModel.sortType.observe(viewLifecycleOwner, { sortType ->
+            if(sortType == SortType.TIME) {
+                binding.sortByTimeTextView.setTextColor(Color.parseColor("#313234"))
+                binding.sortByTimeTextView.typeface = Typeface.DEFAULT_BOLD
+
+                binding.sortByGroupTextView.setTextColor(Color.parseColor("#A4A5A9"))
+                binding.sortByGroupTextView.typeface = Typeface.DEFAULT
+            } else {
+                binding.sortByGroupTextView.setTextColor(Color.parseColor("#313234"))
+                binding.sortByGroupTextView.typeface = Typeface.DEFAULT_BOLD
+
+                binding.sortByTimeTextView.setTextColor(Color.parseColor("#A4A5A9"))
+                binding.sortByTimeTextView.typeface = Typeface.DEFAULT
+            }
+        })
+
+        binding.sortByTimeTextView.setOnClickListener {
+            todoHomeViewModel.changeSortType(SortType.TIME)
         }
 
-        val items = arrayOf("2021년 1월", "2021년 2월", "2021년 3월", "2021년 4월", "2021년 5월", "2021년 6월")
-        val spinnerAdapter = ArrayAdapter<String>(requireContext(), R.layout.item_spinner, items)
-        binding.dateSpinner.adapter = spinnerAdapter
-
-        val calendarAdapter = TodoCalendarAdapter()
-        binding.calendarRecyclerView.adapter = calendarAdapter
-        binding.calendarRecyclerView.layoutManager = GridLayoutManager(this.context, 7)
-        datas.apply {
-            add(MultiData(0, "일", 0, multi_type1))
-            add(MultiData(0, "월", 0, multi_type1))
-            add(MultiData(0, "화", 0, multi_type1))
-            add(MultiData(0, "수", 0, multi_type1))
-            add(MultiData(0, "목", 0, multi_type1))
-            add(MultiData(0, "금", 0, multi_type1))
-            add(MultiData(0, "토", 0, multi_type1))
-
-            for(day in 1..31) {
-                add(MultiData(0, "$day", 0, multi_type2))
-            }
-            calendarAdapter.datas = datas
-            calendarAdapter.notifyDataSetChanged()
+        binding.sortByGroupTextView.setOnClickListener {
+            todoHomeViewModel.changeSortType(SortType.GROUP)
         }
 
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ToDoHomeViewModel::class.java)
-        binding.viewmodel = viewModel
     }
 }

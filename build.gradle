@@ -5,6 +5,7 @@ buildscript {
     ext.fragment_version = "1.2.0-rc04"
     ext.navigation_version = "2.2.0-rc04"
     ext.material_calendarview_version = "1.4.3"
+    ext.hilt_version = "2.35"
 
     repositories {
         google()
@@ -16,6 +17,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }
 }
 

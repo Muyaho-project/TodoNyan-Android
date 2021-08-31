@@ -36,8 +36,10 @@ class TodoHomeAdapter : RecyclerView.Adapter<TodoHomeAdapter.TodoHomeViewHolder>
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(todo: Todo) {
-            binding.todoItem = todo
-            binding.executePendingBindings()
+            binding.groupNameText.text = todo.group
+            binding.todoTitleText.text = todo.title
+            binding.todoDateText.text = "${todo.startTime} - ${todo.endTime}"
+            binding.expText.text = "${todo.exp}exp"
         }
     }
 }
