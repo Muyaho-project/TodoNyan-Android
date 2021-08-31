@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/todo_cat_image_view">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/cat_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="삼색냥"
@@ -38,6 +38,7 @@
             android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/cat_grade_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일반"
