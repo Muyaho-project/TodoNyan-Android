@@ -6,6 +6,7 @@ buildscript {
     ext.navigation_version = "2.2.0-rc04"
     ext.material_calendarview_version = "1.4.3"
     ext.hilt_version = "2.35"
+    ext.compose_version = "1.0.5"
 
     repositories {
         google()
